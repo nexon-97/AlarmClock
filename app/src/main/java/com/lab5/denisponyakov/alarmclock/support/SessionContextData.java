@@ -31,6 +31,7 @@ public class SessionContextData {
     ///////////////////////////////////////////////////////////////
 
     private final String alarmsListKey = "alarmsList";
+    private final String tempAlarmKey = "tempAlarm";
 
     ///////////////////////////////////////////////////////////////
 
@@ -48,9 +49,17 @@ public class SessionContextData {
 
     public List<AlarmDescription> getAlarmsList() {
         if (!hasKey(alarmsListKey)) {
-            SessionContextData.getInstance().put(alarmsListKey, new ArrayList<>());
+            put(alarmsListKey, new ArrayList<>());
         }
 
         return (List<AlarmDescription>) get(alarmsListKey);
+    }
+
+    public AlarmDescription getTempAlarm() {
+        return (AlarmDescription) get(tempAlarmKey);
+    }
+
+    public void setTempAlarm(AlarmDescription alarm) {
+        put(tempAlarmKey, alarm);
     }
 }
