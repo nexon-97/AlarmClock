@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Alarm Clock</string>
+    <string name="add_alarm">Add Alarm</string>
+    <string name="test_str">Test String</string>
+    <string name="alarm_name">Alarm Name</string>
+    <string name="alarm_time">HH:MM</string>
+    <string name="confirm">Confirm</string>
+    <string name="cancel">Cancel</string>
+</resources>

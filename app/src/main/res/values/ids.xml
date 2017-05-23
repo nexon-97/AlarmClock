@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item type="id" name="alarmName" />
+    <item type="id" name="alarmToggle" />
+    <item type="id" name="alarmTime" />
+    <item type="id" name="AddClockButton" />
+    <item type="id" name="AlarmsListView" />
+    <item type="id" name="confirmButton" />
+    <item type="id" name="cancelButton" />
+</resources>
