@@ -7,4 +7,7 @@
     <item type="id" name="AlarmsListView" />
     <item type="id" name="confirmButton" />
     <item type="id" name="cancelButton" />
+    <item type="id" name="alarmNameLabel" />
+    <item type="id" name="alarmTimePicker" />
+    <item type="id" name="alarmNameEditLayout" />
 </resources>
