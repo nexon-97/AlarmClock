@@ -14,6 +14,7 @@ import com.lab5.denisponyakov.alarmclock.R;
 import com.lab5.denisponyakov.alarmclock.adapter.AlarmDescriptionAdapter;
 import com.lab5.denisponyakov.alarmclock.model.AlarmDescription;
 import com.lab5.denisponyakov.alarmclock.support.AlarmsListClickListener;
+import com.lab5.denisponyakov.alarmclock.support.AlarmsListLongClickListener;
 import com.lab5.denisponyakov.alarmclock.support.SessionContextData;
 
 import java.util.List;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         alarmsListView.setAdapter(alarmsListAdapter);
 
         alarmsListView.setOnItemClickListener(new AlarmsListClickListener(this));
+        alarmsListView.setOnItemLongClickListener(new AlarmsListLongClickListener(this));
     }
 
     @Override
