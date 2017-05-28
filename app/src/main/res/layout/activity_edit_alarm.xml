@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.lab5.denisponyakov.alarmclock.activity.EditAlarmActivity">
+    tools:context="com.lab5.denisponyakov.alarmclock.activity.AlarmActivity"
+    android:background="@color/backgroundColor"
+    android:layout_gravity="top" >
 
     <LinearLayout
         android:id="@id/alarmNameEditLayout"
@@ -28,7 +30,8 @@
             android:layout_marginTop="10dp"
             android:layout_weight="0"
             android:text="@string/alarm_name"
-            android:textSize="@dimen/button_size" />
+            android:textSize="@dimen/button_size"
+            android:textColor="@color/colorBlack"/>
 
         <EditText
             android:id="@id/alarmName"
@@ -41,7 +44,8 @@
             android:maxLength="30"
             android:maxLines="1"
             android:selectAllOnFocus="false"
-            android:textSize="@dimen/button_size" />
+            android:textSize="@dimen/button_size"
+            android:textColor="@color/colorBlack" />
 
     </LinearLayout>
 

@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.EditAlarmActivity"
+            android:name=".activity.AlarmActivity"
             android:label="@string/add_alarm">
             <intent-filter>
                 <action android:name="android.intent.action.EDIT" />

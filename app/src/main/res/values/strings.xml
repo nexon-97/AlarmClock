@@ -7,4 +7,8 @@
     <string name="confirm">Confirm</string>
     <string name="cancel">Cancel</string>
     <string name="alarm_time_label">Time</string>
+    <string name="edit">Edit</string>
+    <string name="remove">Remove</string>
+    <string name="pick_action">Pick action</string>
+    <string name="hint_specify_alarm_name">Specify the alarm name!</string>
 </resources>

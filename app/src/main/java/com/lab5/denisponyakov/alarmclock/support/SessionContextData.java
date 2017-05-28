@@ -31,7 +31,7 @@ public class SessionContextData {
     ///////////////////////////////////////////////////////////////
 
     private final String alarmsListKey = "alarmsList";
-    private final String tempAlarmKey = "tempAlarm";
+    private final String currentAlarmKey = "currentAlarm";
 
     ///////////////////////////////////////////////////////////////
 
@@ -55,11 +55,11 @@ public class SessionContextData {
         return (List<AlarmDescription>) get(alarmsListKey);
     }
 
-    public AlarmDescription getTempAlarm() {
-        return (AlarmDescription) get(tempAlarmKey);
+    public void setCurrentAlarm(CrudContainer<AlarmDescription> alarmContainer) {
+        put(currentAlarmKey, alarmContainer);
     }
 
-    public void setTempAlarm(AlarmDescription alarm) {
-        put(tempAlarmKey, alarm);
+    public CrudContainer<AlarmDescription> getCurrentAlarm() {
+        return (CrudContainer<AlarmDescription>) get(currentAlarmKey);
     }
 }

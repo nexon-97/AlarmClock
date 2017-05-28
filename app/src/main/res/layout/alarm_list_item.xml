@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:descendantFocusability="blocksDescendants">
+    android:descendantFocusability="blocksDescendants"
+    android:background="@color/listItemColor">
 
     <TextView
         android:id="@id/alarmName"
@@ -13,11 +14,11 @@
         android:text="@string/alarm_name"
         android:textSize="@dimen/button_size"
         android:textAlignment="textStart"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/colorWhite"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/alarmTime"
+        app:layout_constraintRight_toLeftOf="@id/alarmTime"
         app:layout_constraintHorizontal_bias="0"
         android:layout_marginStart="10dp" />
 
@@ -29,9 +30,10 @@
         android:textSize="@dimen/button_size"
         android:textAlignment="textStart"
         android:textColor="@color/timeColor"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/alarmToggle"
+        app:layout_constraintRight_toLeftOf="@id/alarmToggle"
         app:layout_constraintHorizontal_bias="0"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"/>

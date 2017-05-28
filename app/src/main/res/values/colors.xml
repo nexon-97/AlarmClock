@@ -3,5 +3,10 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#00497a</color>
-    <color name="timeColor">#8e6100</color>
+    <color name="timeColor">#ffde97</color>
+    <color name="backgroundColor">#c9e7ff</color>
+    <color name="listItemColor">#008cff</color>
+    <color name="listDividerColor">#47acff</color>
+    <color name="colorWhite">#ffffff</color>
+    <color name="colorBlack">#000000</color>
 </resources>

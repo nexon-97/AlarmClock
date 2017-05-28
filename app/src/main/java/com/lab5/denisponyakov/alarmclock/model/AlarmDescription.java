@@ -1,13 +1,18 @@
 package com.lab5.denisponyakov.alarmclock.model;
 
-import java.util.Date;
-
-public class AlarmDescription {
+public class AlarmDescription implements CrudObject<AlarmDescription> {
 
     private int hour;
     private int minute;
     private String name;
     private boolean isActive;
+
+    public AlarmDescription() {
+        setName("");
+        setHour(0);
+        setMinute(0);
+        setIsActive(false);
+    }
 
     public AlarmDescription(String name, int hour, int minute, boolean isActive) {
         setName(name);
@@ -46,5 +51,13 @@ public class AlarmDescription {
 
     public boolean getIsActive() {
         return this.isActive;
+    }
+
+    @Override
+    public void update(AlarmDescription tempObject) {
+        setName(tempObject.getName());
+        setHour(tempObject.getHour());
+        setMinute(tempObject.getMinute());
+        setIsActive(tempObject.getIsActive());
     }
 }
