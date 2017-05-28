@@ -10,4 +10,8 @@
     <item type="id" name="alarmNameLabel" />
     <item type="id" name="alarmTimePicker" />
     <item type="id" name="alarmNameEditLayout" />
+    <item type="id" name="alarmSongView" />
+    <item type="id" name="alarmSongPickButton" />
+    <item type="id" name="alarmScrollView" />
+    <item type="id" name="alarmActivityButtonsContainer" />
 </resources>

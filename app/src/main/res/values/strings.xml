@@ -11,4 +11,6 @@
     <string name="remove">Remove</string>
     <string name="pick_action">Pick action</string>
     <string name="hint_specify_alarm_name">Specify the alarm name!</string>
+    <string name="pick_song">Choose</string>
+    <string name="audio_not_set">Not set</string>
 </resources>

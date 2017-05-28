@@ -1,7 +1,17 @@
 package com.lab5.denisponyakov.alarmclock.support;
 
+import android.app.Activity;
+import android.net.Uri;
+
+import com.lab5.denisponyakov.alarmclock.activity.MainActivity;
 import com.lab5.denisponyakov.alarmclock.model.AlarmDescription;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -50,6 +60,7 @@ public class SessionContextData {
     public List<AlarmDescription> getAlarmsList() {
         if (!hasKey(alarmsListKey)) {
             put(alarmsListKey, new ArrayList<>());
+            loadAlarms();
         }
 
         return (List<AlarmDescription>) get(alarmsListKey);
@@ -61,5 +72,10 @@ public class SessionContextData {
 
     public CrudContainer<AlarmDescription> getCurrentAlarm() {
         return (CrudContainer<AlarmDescription>) get(currentAlarmKey);
+    }
+
+    private void loadAlarms() {
+        List<AlarmDescription> alarmsList = getAlarmsList();
+        new AlarmsListParser().load(alarmsList);
     }
 }
