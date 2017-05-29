@@ -1,7 +1,6 @@
 package com.lab5.denisponyakov.alarmclock.activity;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.media.MediaMetadataRetriever;
 import android.net.Uri;
@@ -14,7 +13,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.lab5.denisponyakov.alarmclock.R;
-import com.lab5.denisponyakov.alarmclock.model.AlarmDescription;
+import com.lab5.denisponyakov.alarmclock.model.Alarm;
 import com.lab5.denisponyakov.alarmclock.support.CrudAction;
 import com.lab5.denisponyakov.alarmclock.support.CrudContainer;
 import com.lab5.denisponyakov.alarmclock.support.SessionContextData;
@@ -35,7 +34,7 @@ public class AlarmActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        AlarmDescription alarm = SessionContextData.getInstance().getCurrentAlarm().getObject();
+        Alarm alarm = SessionContextData.getInstance().getCurrentAlarm().getObject();
         if (alarm != null) {
             EditText nameView = (EditText)findViewById(R.id.alarmName);
             TimePicker timePicker = (TimePicker)findViewById(R.id.alarmTimePicker);
@@ -59,7 +58,7 @@ public class AlarmActivity extends AppCompatActivity {
         int hour = timePicker.getCurrentHour();
         int minute = timePicker.getCurrentMinute();
 
-        AlarmDescription alarm = SessionContextData.getInstance().getCurrentAlarm().getObject();
+        Alarm alarm = SessionContextData.getInstance().getCurrentAlarm().getObject();
         alarm.setName(alarmName);
         alarm.setHour(hour);
         alarm.setMinute(minute);
@@ -77,8 +76,8 @@ public class AlarmActivity extends AppCompatActivity {
     }
 
     public void onConfirmPressed(View view) {
-        CrudContainer<AlarmDescription> alarmContainer = SessionContextData.getInstance().getCurrentAlarm();
-        AlarmDescription alarm = alarmContainer.getObject();
+        CrudContainer<Alarm> alarmContainer = SessionContextData.getInstance().getCurrentAlarm();
+        Alarm alarm = alarmContainer.getObject();
 
         TextView nameView = (TextView)findViewById(R.id.alarmName);
         String alarmName = nameView.getText().toString();
@@ -98,13 +97,14 @@ public class AlarmActivity extends AppCompatActivity {
             alarm.setMinute(minute);
 
             if (alarmContainer.getAction().equals(CrudAction.Create)) {
-                List<AlarmDescription> alarmsList = SessionContextData.getInstance().getAlarmsList();
+                List<Alarm> alarmsList = SessionContextData.getInstance().getAlarmsList();
                 alarm.setIsActive(true);
                 alarmsList.add(alarmContainer.getObject());
             } else if (alarmContainer.getAction().equals(CrudAction.Update)) {
                 alarmContainer.commit();
             }
 
+            SessionContextData.getInstance().saveAlarms();
             onBackPressed();
         }
     }

@@ -3,9 +3,10 @@ package com.lab5.denisponyakov.alarmclock.support;
 import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
+import android.util.Log;
 
 import com.lab5.denisponyakov.alarmclock.activity.MainActivity;
-import com.lab5.denisponyakov.alarmclock.model.AlarmDescription;
+import com.lab5.denisponyakov.alarmclock.model.Alarm;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,11 +19,11 @@ import java.util.List;
 
 public class AlarmsListParser {
 
-    public void save(List<AlarmDescription> alarms) {
+    public void save(List<Alarm> alarms) {
         JSONArray alarmsArray = new JSONArray();
 
-        List<AlarmDescription> alarmsList = SessionContextData.getInstance().getAlarmsList();
-        for (AlarmDescription alarm : alarmsList) {
+        List<Alarm> alarmsList = SessionContextData.getInstance().getAlarmsList();
+        for (Alarm alarm : alarmsList) {
             JSONObject alarmObject = new JSONObject();
 
             try {
@@ -48,7 +49,7 @@ public class AlarmsListParser {
         }
     }
 
-    public void load(List<AlarmDescription> alarms) {
+    public void load(List<Alarm> alarms) {
         alarms.clear();
 
         try {
@@ -58,12 +59,15 @@ public class AlarmsListParser {
             byte[] buffer = new byte[(int) inputStream.getChannel().size()];
             inputStream.read(buffer);
 
+            Log.i("IO", "Load: ");
+            Log.i("IO", new String(buffer));
+
             try {
                 JSONArray alarmsListJson = new JSONArray(new String(buffer));
 
                 int count = alarmsListJson.length();
                 for (int i = 0; i < count; i++) {
-                    AlarmDescription alarm = new AlarmDescription();
+                    Alarm alarm = new Alarm();
                     JSONObject alarmObject = (JSONObject)alarmsListJson.get(i);
 
                     alarm.setName(alarmObject.getString("name"));

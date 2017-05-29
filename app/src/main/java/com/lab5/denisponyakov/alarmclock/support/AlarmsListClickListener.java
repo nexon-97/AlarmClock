@@ -7,7 +7,7 @@ import android.widget.AdapterView;
 
 import com.lab5.denisponyakov.alarmclock.R;
 import com.lab5.denisponyakov.alarmclock.activity.AlarmActivity;
-import com.lab5.denisponyakov.alarmclock.model.AlarmDescription;
+import com.lab5.denisponyakov.alarmclock.model.Alarm;
 
 public class AlarmsListClickListener implements AdapterView.OnItemClickListener {
 
@@ -20,8 +20,8 @@ public class AlarmsListClickListener implements AdapterView.OnItemClickListener 
     @Override
     public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3)
     {
-        AlarmDescription alarm = (AlarmDescription)arg0.getItemAtPosition(position);
-        CrudContainer<AlarmDescription> alarmContainer = new CrudContainer<>(AlarmDescription.class).setUpdateMode(alarm);
+        Alarm alarm = (Alarm)arg0.getItemAtPosition(position);
+        CrudContainer<Alarm> alarmContainer = new CrudContainer<>(Alarm.class).setUpdateMode(alarm);
         SessionContextData.getInstance().setCurrentAlarm(alarmContainer);
 
         Intent intent = new Intent(activity, AlarmActivity.class);

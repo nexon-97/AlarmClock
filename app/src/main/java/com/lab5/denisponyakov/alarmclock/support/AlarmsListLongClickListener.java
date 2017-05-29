@@ -11,8 +11,9 @@ import android.widget.ArrayAdapter;
 
 import com.lab5.denisponyakov.alarmclock.R;
 import com.lab5.denisponyakov.alarmclock.activity.AlarmActivity;
+import com.lab5.denisponyakov.alarmclock.activity.AlarmRingActivity;
 import com.lab5.denisponyakov.alarmclock.activity.MainActivity;
-import com.lab5.denisponyakov.alarmclock.model.AlarmDescription;
+import com.lab5.denisponyakov.alarmclock.model.Alarm;
 
 public class AlarmsListLongClickListener implements AdapterView.OnItemLongClickListener  {
 
@@ -71,8 +72,8 @@ public class AlarmsListLongClickListener implements AdapterView.OnItemLongClickL
     }
 
     private void onEditAlarmAction() {
-        AlarmDescription alarm = SessionContextData.getInstance().getAlarmsList().get(selectedPosition);
-        CrudContainer<AlarmDescription> alarmContainer = new CrudContainer<>(AlarmDescription.class).setUpdateMode(alarm);
+        Alarm alarm = SessionContextData.getInstance().getAlarmsList().get(selectedPosition);
+        CrudContainer<Alarm> alarmContainer = new CrudContainer<>(Alarm.class).setUpdateMode(alarm);
         SessionContextData.getInstance().setCurrentAlarm(alarmContainer);
 
         Intent intent = new Intent(activity, AlarmActivity.class);

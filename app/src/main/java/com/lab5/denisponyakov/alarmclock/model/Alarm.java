@@ -2,7 +2,7 @@ package com.lab5.denisponyakov.alarmclock.model;
 
 import android.net.Uri;
 
-public class AlarmDescription implements CrudObject<AlarmDescription> {
+public class Alarm implements CrudObject<Alarm> {
 
     private int hour;
     private int minute;
@@ -10,7 +10,7 @@ public class AlarmDescription implements CrudObject<AlarmDescription> {
     private Uri songUri;
     private boolean isActive;
 
-    public AlarmDescription() {
+    public Alarm() {
         setName("");
         setHour(0);
         setMinute(0);
@@ -18,7 +18,7 @@ public class AlarmDescription implements CrudObject<AlarmDescription> {
         setIsActive(false);
     }
 
-    public AlarmDescription(String name, int hour, int minute, Uri songUri, boolean isActive) {
+    public Alarm(String name, int hour, int minute, Uri songUri, boolean isActive) {
         setName(name);
         setHour(hour);
         setMinute(minute);
@@ -67,7 +67,7 @@ public class AlarmDescription implements CrudObject<AlarmDescription> {
     }
 
     @Override
-    public void update(AlarmDescription tempObject) {
+    public void update(Alarm tempObject) {
         setName(tempObject.getName());
         setHour(tempObject.getHour());
         setMinute(tempObject.getMinute());

@@ -1,17 +1,7 @@
 package com.lab5.denisponyakov.alarmclock.support;
 
-import android.app.Activity;
-import android.net.Uri;
+import com.lab5.denisponyakov.alarmclock.model.Alarm;
 
-import com.lab5.denisponyakov.alarmclock.activity.MainActivity;
-import com.lab5.denisponyakov.alarmclock.model.AlarmDescription;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -57,25 +47,28 @@ public class SessionContextData {
         return blackboard.containsKey(key);
     }
 
-    public List<AlarmDescription> getAlarmsList() {
+    public List<Alarm> getAlarmsList() {
         if (!hasKey(alarmsListKey)) {
             put(alarmsListKey, new ArrayList<>());
             loadAlarms();
         }
 
-        return (List<AlarmDescription>) get(alarmsListKey);
+        return (List<Alarm>) get(alarmsListKey);
     }
 
-    public void setCurrentAlarm(CrudContainer<AlarmDescription> alarmContainer) {
+    public void setCurrentAlarm(CrudContainer<Alarm> alarmContainer) {
         put(currentAlarmKey, alarmContainer);
     }
 
-    public CrudContainer<AlarmDescription> getCurrentAlarm() {
-        return (CrudContainer<AlarmDescription>) get(currentAlarmKey);
+    public CrudContainer<Alarm> getCurrentAlarm() {
+        return (CrudContainer<Alarm>) get(currentAlarmKey);
     }
 
-    private void loadAlarms() {
-        List<AlarmDescription> alarmsList = getAlarmsList();
-        new AlarmsListParser().load(alarmsList);
+    public void loadAlarms() {
+        new AlarmsListParser().load(getAlarmsList());
+    }
+
+    public void saveAlarms() {
+        new AlarmsListParser().save(getAlarmsList());
     }
 }
