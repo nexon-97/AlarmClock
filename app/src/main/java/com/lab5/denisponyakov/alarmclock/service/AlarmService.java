@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.os.PowerManager;
 import android.support.annotation.Nullable;
-import android.util.Log;
 
 import com.lab5.denisponyakov.alarmclock.activity.AlarmRingActivity;
 import com.lab5.denisponyakov.alarmclock.model.Alarm;
@@ -21,9 +20,15 @@ import java.util.TimerTask;
 
 public class AlarmService extends Service {
 
-    private Timer timer;
     private AlarmService serviceContext;
     public static boolean alarmIsPlaying = false;
+    private PowerManager.WakeLock fullWakeLock;
+    private PowerManager.WakeLock partialWakeLock;
+
+    @Override
+    public void onCreate() {
+        createWakeLocks();
+    }
 
     @Nullable
     @Override
@@ -35,7 +40,7 @@ public class AlarmService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         serviceContext = this;
 
-        timer = new Timer();
+        Timer timer = new Timer();
         timer.scheduleAtFixedRate(new AlarmTimerTask(), 0, 2000);
 
         return super.onStartCommand(intent, flags, startId);
@@ -57,14 +62,7 @@ public class AlarmService extends Service {
             Alarm alarm = alarms.get(i);
 
             if (alarm.getIsActive() && alarm.getHour() == currentHour && alarm.getMinute() == currentMinute) {
-                PowerManager pm = (PowerManager) getApplicationContext().getSystemService(Context.POWER_SERVICE);
-                PowerManager.WakeLock wakeLock = pm.newWakeLock((PowerManager.SCREEN_BRIGHT_WAKE_LOCK | PowerManager.FULL_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP), "TAG");
-                wakeLock.acquire();
-                wakeLock.release();
-
-                KeyguardManager keyguardManager = (KeyguardManager) getApplicationContext().getSystemService(Context.KEYGUARD_SERVICE);
-                KeyguardManager.KeyguardLock keyguardLock = keyguardManager.newKeyguardLock("TAG");
-                keyguardLock.disableKeyguard();
+                wakeDevice();
 
                 Intent alarmIntent = new Intent(this, AlarmRingActivity.class);
                 alarmIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -85,5 +83,22 @@ public class AlarmService extends Service {
         {
             serviceContext.checkAlarmState();
         }
+    }
+
+    private void createWakeLocks(){
+        PowerManager powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
+        fullWakeLock = powerManager.newWakeLock((PowerManager.SCREEN_BRIGHT_WAKE_LOCK | PowerManager.FULL_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP), "Loneworker - FULL WAKE LOCK");
+        partialWakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "Loneworker - PARTIAL WAKE LOCK");
+
+    }
+
+    public void wakeDevice() {
+        fullWakeLock.acquire();
+
+        KeyguardManager keyguardManager = (KeyguardManager) getSystemService(Context.KEYGUARD_SERVICE);
+        KeyguardManager.KeyguardLock keyguardLock = keyguardManager.newKeyguardLock("TAG");
+        keyguardLock.disableKeyguard();
+
+        fullWakeLock.release();
     }
 }

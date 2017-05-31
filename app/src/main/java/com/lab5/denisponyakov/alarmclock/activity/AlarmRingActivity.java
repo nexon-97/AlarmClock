@@ -6,7 +6,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.WindowManager;
 
 import com.lab5.denisponyakov.alarmclock.R;
 import com.lab5.denisponyakov.alarmclock.model.Alarm;
@@ -34,15 +33,18 @@ public class AlarmRingActivity extends AppCompatActivity {
         String alarmUri = getIntent().getStringExtra("alarmUri");
         alarmId = getIntent().getIntExtra("alarmId", -1);
         Uri myUri = Uri.parse(alarmUri);
-        mediaPlayer = new MediaPlayer();
-        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
 
-        try {
-            mediaPlayer.setDataSource(this, myUri);
-            mediaPlayer.prepare();
-            mediaPlayer.start();
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (mediaPlayer == null) {
+            mediaPlayer = new MediaPlayer();
+            mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+
+            try {
+                mediaPlayer.setDataSource(this, myUri);
+                mediaPlayer.prepare();
+                mediaPlayer.start();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -65,6 +67,7 @@ public class AlarmRingActivity extends AppCompatActivity {
         }
 
         AlarmService.alarmIsPlaying = false;
+        finish();
     }
 
     @Override
